@@ -93,13 +93,13 @@ namespace Praktikum.BinTree
             if (e.ChildElementLeft != null)
             {
                 p = e.ParentElement;
-                e = e.ChildElementLeft;    
+                p.ChildElementLeft = e.ChildElementLeft;
             }
             // Oder nur einen rechten
             else
             {
                 p = e.ParentElement;
-                e = e.ChildElementRight;
+                p.ChildElementRight = e.ChildElementRight;
             }
 
             return true;

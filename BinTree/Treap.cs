@@ -89,18 +89,42 @@ namespace Praktikum.BinTree
 
         private void RotateElemetToLeaf(TreapElement elem)
         {
-            while (elem.ChildElementRight != null && elem.ChildElementLeft != null)
+            if (elem.ChildElementLeft == null && elem.ChildElementRight == null)
             {
+                Console.WriteLine("No Rot");
+                return;
+            }
 
-                if (((TreapElement) elem.ChildElementLeft).Priority < ((TreapElement) elem.ChildElementRight).Priority)
+            if (elem.ChildElementLeft == null && elem.ChildElementRight != null)
+            {
+                Console.WriteLine("Rot Left on Child Right");
+                this.RotateLeft(elem.ChildElementRight);
+            }
+            else if (elem.ChildElementLeft != null && elem.ChildElementRight == null)
+            {
+                Console.WriteLine("Rot Right on Child Left");
+                this.RotateRight(elem.ChildElementLeft);
+            }
+            else
+            {
+                if (((TreapElement)elem.ChildElementLeft).Priority < ((TreapElement)elem.ChildElementRight).Priority)
                 {
-                    this.RotateRight((TreapElement) elem.ChildElementLeft);
+                    Console.WriteLine("Rot Right on Child Left");
+                    this.RotateRight(elem.ChildElementLeft);
                 }
                 else
                 {
-                    this.RotateLeft((TreapElement) elem.ChildElementRight);
+                    Console.WriteLine("Rot Left on Child Right");
+                    this.RotateLeft(elem.ChildElementRight);
                 }
             }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            this.Print();
+            RotateElemetToLeaf(elem);
         }
 
     }
