@@ -91,39 +91,39 @@ namespace Praktikum.BinTree
         {
             if (elem.ChildElementLeft == null && elem.ChildElementRight == null)
             {
-                Console.WriteLine("No Rot");
+                //Console.WriteLine("No Rot");
                 return;
             }
 
             if (elem.ChildElementLeft == null && elem.ChildElementRight != null)
             {
-                Console.WriteLine("Rot Left on Child Right");
+                //Console.WriteLine("Rot Left on Child Right");
                 this.RotateLeft(elem.ChildElementRight);
             }
             else if (elem.ChildElementLeft != null && elem.ChildElementRight == null)
             {
-                Console.WriteLine("Rot Right on Child Left");
+                //Console.WriteLine("Rot Right on Child Left");
                 this.RotateRight(elem.ChildElementLeft);
             }
             else
             {
                 if (((TreapElement)elem.ChildElementLeft).Priority < ((TreapElement)elem.ChildElementRight).Priority)
                 {
-                    Console.WriteLine("Rot Right on Child Left");
+                    //Console.WriteLine("Rot Right on Child Left");
                     this.RotateRight(elem.ChildElementLeft);
                 }
                 else
                 {
-                    Console.WriteLine("Rot Left on Child Right");
+                    //Console.WriteLine("Rot Left on Child Right");
                     this.RotateLeft(elem.ChildElementRight);
                 }
             }
 
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            this.Print();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //this.Print();
             RotateElemetToLeaf(elem);
         }
 
