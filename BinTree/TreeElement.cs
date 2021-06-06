@@ -16,16 +16,16 @@ namespace Praktikum.BinTree
             Root
         }
 
-        private TreeElement parentElement;
-        private TreeElement childElementLeft;
-        private TreeElement childElementRight;
+        private TreeElement parent;
+        private TreeElement childLeft;
+        private TreeElement childRight;
         private int value;
 
         ParentNodeRelation rel;
 
         public TreeElement(TreeElement root, int value)
         {
-            this.parentElement = root;
+            this.parent = root;
             this.value = value;
 
             if (root == null)
@@ -35,43 +35,43 @@ namespace Praktikum.BinTree
 
         }
 
-        public TreeElement ChildElementLeft
+        public TreeElement ChildLeft
         {
-            get { return childElementLeft; }
+            get { return childLeft; }
             set 
             { 
-                this.childElementLeft = value;
+                this.childLeft = value;
 
                 if (value == null)
                 {
                     return;
                 }
-                this.childElementLeft.ParentRelation = ParentNodeRelation.LeftChild;
-                this.childElementLeft.ParentElement = this;
+                this.childLeft.ParentRelation = ParentNodeRelation.LeftChild;
+                this.childLeft.Parent = this;
             }
         }
 
-        public TreeElement ChildElementRight
+        public TreeElement ChildRight
         {
-            get { return childElementRight; }
+            get { return childRight; }
             set 
             {
-                this.childElementRight = value;
+                this.childRight = value;
 
                 if (value == null)
                 {
                     return;
                 }
-                this.childElementRight.ParentRelation = ParentNodeRelation.RightChild;
-                this.childElementRight.ParentElement = this;
+                this.childRight.ParentRelation = ParentNodeRelation.RightChild;
+                this.childRight.Parent = this;
             }
         }
 
-        public TreeElement ParentElement
+        public TreeElement Parent
         {
-            get { return parentElement; }
+            get { return parent; }
             set { 
-                this.parentElement = value; 
+                this.parent = value; 
 
                 if (value == null)
                 {

@@ -32,10 +32,10 @@ namespace Praktikum.BinTree
             }
 
             // Wir sind ein Blatt (2)
-            if (e.ChildElementLeft == null && e.ChildElementRight == null)
+            if (e.ChildLeft == null && e.ChildRight == null)
             {
                 // Sind wir die Wurzel, setzen wir uns auf null
-                TreeElement parent = e.ParentElement;
+                TreeElement parent = e.Parent;
                 if (parent == null)
                 {
                     this.RootElement = null;
@@ -45,42 +45,42 @@ namespace Praktikum.BinTree
                 // Sind wir es nicht, lösche uns aus dem parent
                 if (elem < parent.Value)
                 {
-                    parent.ChildElementLeft = null;
+                    parent.ChildLeft = null;
                 } 
                 else
                 {
-                    parent.ChildElementRight = null;
+                    parent.ChildRight = null;
                 }
                 return true;
             }
 
             // Wir haben zwei Nachfolger (4)
-            if (e.ChildElementLeft != null && e.ChildElementRight != null)
+            if (e.ChildLeft != null && e.ChildRight != null)
             {
                 TreeElement a = e, b;
 
                 // Gibt es im Linken Nachfolgerteilbaum ein größeres Element als das ChildLeft?
-                if (a.ChildElementLeft.ChildElementRight != null)
+                if (a.ChildLeft.ChildRight != null)
                 {
                     // Wenn Ja, gehen wir den Teilbaum durch, bis wir den größten Wert aus ihm haben und setzen a darauf
-                    a = a.ChildElementLeft;
-                    while (a.ChildElementRight.ChildElementRight != null)
+                    a = a.ChildLeft;
+                    while (a.ChildRight.ChildRight != null)
                     {
-                        a = a.ChildElementRight;
+                        a = a.ChildRight;
                     }
                 }
 
                 // Ist a gleich e, also e schon das größte Element im Teilbaum, speichern wir den Linken Nachfolger zwischen und ersetzen ihn mit seinem symmetrischen Vorgägner
                 if (a == e)
                 {
-                    b = a.ChildElementLeft;
-                    a.ChildElementLeft = b.ChildElementLeft;
+                    b = a.ChildLeft;
+                    a.ChildLeft = b.ChildLeft;
                 } 
                 // Wenn nicht, speichern wir den größten Wert aus dem Teilbaum (in diesem Fall der rechte Nachfolger von a) zwischen und setzen seinen linken Nachfolger als neuen rechten Nachfolger von a
                 else
                 {
-                    b = a.ChildElementRight;
-                    a.ChildElementRight = b.ChildElementLeft;
+                    b = a.ChildRight;
+                    a.ChildRight = b.ChildLeft;
                 }
 
                 // Am Ende wird noch der in b zwischengespeicherte Wert an Stelle von e geschrieben.
@@ -90,16 +90,57 @@ namespace Praktikum.BinTree
 
 
             // Wenn es nur einen linken Nachfolger gibt (3)
-            if (e.ChildElementLeft != null)
-            {
-                p = e.ParentElement;
-                p.ChildElementLeft = e.ChildElementLeft;
+            if (e.ChildLeft != null)
+            {   
+                // e ist die Wurzel
+                if (e.ParentRelation == ParentNodeRelation.Root)
+                {
+                    // Setze linkes child als neue Wurzel
+                    e.ChildLeft.Parent = null;
+                    this.RootElement = e.ChildLeft;
+                    
+                } 
+                else
+                {   
+                    // Sonst hole das parent und verlinke entsprechend.
+                    p = e.Parent;
+                    if (e.ParentRelation == ParentNodeRelation.LeftChild)
+                    {
+                        p.ChildLeft = e.ChildLeft;
+                    }
+                    else
+                    {
+                        p.ChildRight = e.ChildLeft;
+                    }
+                    
+                }
+               
             }
             // Oder nur einen rechten
             else
             {
-                p = e.ParentElement;
-                p.ChildElementRight = e.ChildElementRight;
+                // e ist die Wurzel
+                if (e.ParentRelation == ParentNodeRelation.Root)
+                {
+                    // Setze rechtes child als neue Wurzel
+                    e.ChildRight.Parent = null;
+                    this.RootElement = e.ChildRight;
+
+                }
+                else
+                {
+                    // Sonst hole das parent und verlinke entsprechend.
+                    p = e.Parent;
+                    if (e.ParentRelation == ParentNodeRelation.LeftChild)
+                    {
+                        p.ChildLeft = e.ChildRight;
+                    }
+                    else
+                    {
+                        p.ChildRight = e.ChildRight;
+                    }
+
+                }
             }
 
             return true;
@@ -121,11 +162,11 @@ namespace Praktikum.BinTree
 
             if (elem < lastFoundElement.Value)
             {
-                lastFoundElement.ChildElementLeft = new TreeElement(lastFoundElement, elem);
+                lastFoundElement.ChildLeft = new TreeElement(lastFoundElement, elem);
             } 
             else
             {
-                lastFoundElement.ChildElementRight = new TreeElement(lastFoundElement, elem);
+                lastFoundElement.ChildRight = new TreeElement(lastFoundElement, elem);
             }
 
             return true;
@@ -155,16 +196,16 @@ namespace Praktikum.BinTree
                 return;
             }
 
-            if (root.ChildElementLeft != null)
+            if (root.ChildLeft != null)
             {
-                TraverseAndPrintInOrder(root.ChildElementLeft);
+                TraverseAndPrintInOrder(root.ChildLeft);
             }
 
             Console.Write(root.ToString());
 
-            if (root.ChildElementRight != null)
+            if (root.ChildRight != null)
             {
-                TraverseAndPrintInOrder(root.ChildElementRight);
+                TraverseAndPrintInOrder(root.ChildRight);
             }
         }
 
@@ -180,7 +221,7 @@ namespace Praktikum.BinTree
                 return;
             }
 
-            TraverseAndPrintInReverse(node.ChildElementRight, lvl + 1);
+            TraverseAndPrintInReverse(node.ChildRight, lvl + 1);
 
             for (int x = 0; x < lvl; x++)
             {
@@ -200,7 +241,7 @@ namespace Praktikum.BinTree
                 Console.WriteLine(node.ToString());
             }
 
-            TraverseAndPrintInReverse(node.ChildElementLeft, lvl + 1);
+            TraverseAndPrintInReverse(node.ChildLeft, lvl + 1);
         }
 
 
@@ -218,11 +259,11 @@ namespace Praktikum.BinTree
                 this.lastFoundElement = e;
                 if (e.Value < targetValue)
                 {
-                    e = e.ChildElementRight;
+                    e = e.ChildRight;
                 }
                 else
                 {
-                    e = e.ChildElementLeft;
+                    e = e.ChildLeft;
                 }
             }
             
@@ -233,26 +274,26 @@ namespace Praktikum.BinTree
         protected void RotateLeft(TreeElement elem)
         {
             // Linken Teilbaum an Parent hängen
-            elem.ParentElement.ChildElementRight = elem.ChildElementLeft;
+            elem.Parent.ChildRight = elem.ChildLeft;
 
 
             // Parent zum neuen linken Teilbaum machen und parent für elem setzen
-            TreeElement e = elem.ParentElement.ParentElement;
-            ParentNodeRelation pr = elem.ParentElement.ParentRelation;
+            TreeElement e = elem.Parent.Parent;
+            ParentNodeRelation pr = elem.Parent.ParentRelation;
 
-            elem.ChildElementLeft = elem.ParentElement;
+            elem.ChildLeft = elem.Parent;
 
             if (pr == ParentNodeRelation.LeftChild)
             {
-                e.ChildElementLeft = elem;
+                e.ChildLeft = elem;
             }
             else if (pr == ParentNodeRelation.RightChild)
             {
-                e.ChildElementRight = elem;
+                e.ChildRight = elem;
             }
             else if (pr == ParentNodeRelation.Root)
             {
-                elem.ParentElement = null;
+                elem.Parent = null;
                 this.root = elem;
             }
         }
@@ -267,26 +308,26 @@ namespace Praktikum.BinTree
              */
 
             // Rechten Teilbaum an Parent hängen
-            elem.ParentElement.ChildElementLeft = elem.ChildElementRight;
+            elem.Parent.ChildLeft = elem.ChildRight;
 
 
             // Parent zum neuen rechten Teilbaum machen und parent für elem setzen
-            TreeElement e = elem.ParentElement.ParentElement;
-            ParentNodeRelation pr = elem.ParentElement.ParentRelation;
+            TreeElement e = elem.Parent.Parent;
+            ParentNodeRelation pr = elem.Parent.ParentRelation;
 
-            elem.ChildElementRight = elem.ParentElement;
+            elem.ChildRight = elem.Parent;
 
             if (pr == ParentNodeRelation.LeftChild)
             {
-                e.ChildElementLeft = elem;
+                e.ChildLeft = elem;
             } 
             else if (pr == ParentNodeRelation.RightChild)
             {
-                e.ChildElementRight = elem;
+                e.ChildRight = elem;
             }
             else if (pr == ParentNodeRelation.Root)
             {
-                elem.ParentElement = null;
+                elem.Parent = null;
                 this.root = elem;
             }
             
