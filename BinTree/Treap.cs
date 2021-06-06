@@ -9,7 +9,7 @@ namespace Praktikum.BinTree
 
         public override bool Delete(int elem)
         {
-            TreapElement e = (TreapElement) this.TraverseAndFind(elem);
+            TreapElement e = (TreapElement)this.TraverseAndFind(elem);
 
             if (e == null)
             {
@@ -18,10 +18,14 @@ namespace Praktikum.BinTree
 
             this.RotateElemetToLeaf(e);
 
-            if (e.ParentRelation == TreeElement.ParentNodeRelation.LeftChild)
+            if (e.ParentRelation == TreeElement.ParentNodeRelation.Root)
+            {
+                this.RootElement = null;
+            }
+            else if (e.ParentRelation == TreeElement.ParentNodeRelation.LeftChild)
             {
                 e.Parent.ChildLeft = null;
-            } 
+            }
             else
             {
                 e.Parent.ChildRight = null;
