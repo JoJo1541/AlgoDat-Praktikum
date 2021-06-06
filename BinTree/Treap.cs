@@ -9,7 +9,7 @@ namespace Praktikum.BinTree
 
         public override bool Delete(int elem)
         {
-            TreapElement e = (TreapElement) this.TraverseAndFind(elem);
+            TreapElement e = (TreapElement)this.TraverseAndFind(elem);
 
             if (e == null)
             {
@@ -18,13 +18,17 @@ namespace Praktikum.BinTree
 
             this.RotateElemetToLeaf(e);
 
-            if (e.ParentRelation == TreeElement.ParentNodeRelation.LeftChild)
+            if (e.ParentRelation == TreeElement.ParentNodeRelation.Root)
             {
-                e.ParentElement.ChildElementLeft = null;
-            } 
+                this.RootElement = null;
+            }
+            else if (e.ParentRelation == TreeElement.ParentNodeRelation.LeftChild)
+            {
+                e.Parent.ChildLeft = null;
+            }
             else
             {
-                e.ParentElement.ChildElementRight = null;
+                e.Parent.ChildRight = null;
             }
 
             return true;
@@ -52,12 +56,12 @@ namespace Praktikum.BinTree
             if (elem < lastFoundElement.Value)
             {
                 e = new TreapElement(lastFoundElement, elem, r); ;
-                lastFoundElement.ChildElementLeft = e;
+                lastFoundElement.ChildLeft = e;
             }
             else
             {
                 e = new TreapElement(lastFoundElement, elem, r);
-                lastFoundElement.ChildElementRight = e;
+                lastFoundElement.ChildRight = e;
             }
 
             EnsureUpwardsHeapCondition(e);
@@ -68,7 +72,7 @@ namespace Praktikum.BinTree
 
         private void EnsureUpwardsHeapCondition(TreapElement elem)
         {
-            while (elem.ParentElement != null && elem.Priority <= ((TreapElement)elem.ParentElement).Priority)
+            while (elem.Parent != null && elem.Priority <= ((TreapElement)elem.Parent).Priority)
             {
                 if (elem.ParentRelation == TreeElement.ParentNodeRelation.LeftChild)
                 {
@@ -80,7 +84,7 @@ namespace Praktikum.BinTree
                 }
             }
 
-            if (elem.ParentElement == null)
+            if (elem.Parent == null)
             {
                 this.RootElement = elem;
             }
@@ -89,41 +93,37 @@ namespace Praktikum.BinTree
 
         private void RotateElemetToLeaf(TreapElement elem)
         {
-            if (elem.ChildElementLeft == null && elem.ChildElementRight == null)
+            if (elem.ChildLeft == null && elem.ChildRight == null)
             {
-                //Console.WriteLine("No Rot");
+                // Console.WriteLine("No Rot");
                 return;
             }
 
-            if (elem.ChildElementLeft == null && elem.ChildElementRight != null)
+            if (elem.ChildLeft == null && elem.ChildRight != null)
             {
-                //Console.WriteLine("Rot Left on Child Right");
-                this.RotateLeft(elem.ChildElementRight);
+                // Console.WriteLine("Rot Left on Child Right");
+                this.RotateLeft(elem.ChildRight);
             }
-            else if (elem.ChildElementLeft != null && elem.ChildElementRight == null)
+            else if (elem.ChildLeft != null && elem.ChildRight == null)
             {
-                //Console.WriteLine("Rot Right on Child Left");
-                this.RotateRight(elem.ChildElementLeft);
+                // Console.WriteLine("Rot Right on Child Left");
+                this.RotateRight(elem.ChildLeft);
             }
             else
             {
-                if (((TreapElement)elem.ChildElementLeft).Priority < ((TreapElement)elem.ChildElementRight).Priority)
+                if (((TreapElement)elem.ChildLeft).Priority < ((TreapElement)elem.ChildRight).Priority)
                 {
-                    //Console.WriteLine("Rot Right on Child Left");
-                    this.RotateRight(elem.ChildElementLeft);
+                    // Console.WriteLine("Rot Right on Child Left");
+                    this.RotateRight(elem.ChildLeft);
                 }
                 else
                 {
-                    //Console.WriteLine("Rot Left on Child Right");
-                    this.RotateLeft(elem.ChildElementRight);
+                    // Console.WriteLine("Rot Left on Child Right");
+                    this.RotateLeft(elem.ChildRight);
                 }
             }
 
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //this.Print();
+
             RotateElemetToLeaf(elem);
         }
 
