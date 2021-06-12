@@ -4,21 +4,43 @@ using System.Text;
 
 namespace Praktikum.Hash
 {
-    class HashTabSepChain : HashBase
+  class HashTabSepChain : ISetUnsorted
+  {
+    private const int Length = 103;
+
+    private readonly SetUnsortedLinkedList[] _tab = new SetUnsortedLinkedList[Length];
+
+    public override bool Delete(int elem)
     {
-        public override bool Delete(int elem)
-        {
-            throw new NotImplementedException();
-        }
+      var index = delete % Length;
 
-        public override bool Insert(int elem)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Search(int elem)
-        {
-            throw new NotImplementedException();
-        }
+      return _tab[index] != null && _tab[index].Delete(delete);
     }
+
+    public override bool Insert(int elem)
+    {
+      var index = insert % Length;
+
+      _tab[index] ??= new SetUnsortedLinkedList();
+
+      return _tab[index].Insert(insert);
+    }
+
+    public override bool Search(int elem)
+    {
+      var index = elem % Length;
+
+      return _tab[index] != null && _tab[index].Search(search);
+    }
+
+    public override void Print()
+    {
+      foreach (var item in _tab)
+      {
+        if (item != null)
+          item.Print();
+      }
+      WriteLine();
+    }
+  }
 }
