@@ -9,9 +9,9 @@ namespace Praktikum.LinkedList
     /// </summary>
     abstract class LinkedListBase : IDictionary
     {
-        LinkedListElement first;
-        LinkedListElement last;
-        LinkedListElement lastSearchResult;
+        internal LinkedListElement start;
+        internal LinkedListElement end;
+        internal LinkedListElement previous;
 
         /// <summary>
         /// Konstruktor
@@ -22,6 +22,25 @@ namespace Praktikum.LinkedList
             last = null;
         }
 
+        /// <summary>
+        /// Fügt das erste Element ein
+        /// </summary>
+        /// <param name="elem">Das einzufügende Element</param>
+        protected void AddFirst(int elem)
+        {
+            start = new LinkedListElement(elem);
+            end = start;
+        }
+
+        /// <summary>
+        /// Fügt am Ende der Liste ein Element ein
+        /// </summary>
+        /// <param name="elem">Das einzufügende Element</param>
+        protected virtual void AddLast(int elem)
+        {
+            end.next = new LinkedListElement(elem);
+            end = end.next;
+        }
 
         /// <summary>
         /// Insert Methode für die unsortierte LinkedList
@@ -30,20 +49,38 @@ namespace Praktikum.LinkedList
         /// <returns>Gibt True zurück, wenn Einfügen erfolgreich. Sonst False</returns>
         public virtual bool Insert(int elem)
         {
-            throw new NotImplementedException();
+            if (start == null)
+            {
+                AddFirst(elem);
+                return true;
+            }
+            else
+            {
+                AddLast(elem);
+                return false;
+            }
         }
 
-
-        /// <summary>
-        /// Sucht nach einem Element in der LinkedList und legt das Ergebnis im Feld lastSearchResult ab. (Wird kein Element gefunden, wird lastSearchResult auf null gesetzt)
+         /// <summary>
+        /// Sucht nach einem Element in der LinkedList (Wird kein Element gefunden, wird lastSearchResult auf null gesetzt).
         /// </summary>
         /// <param name="elem">Das zu suchende Element.</param>
         /// <returns>True, wenn ein Element elem gefunden wurde. Sonst False.</returns>
         public virtual bool Search(int elem)
         {
-            throw new NotImplementedException();
+            if (start == null)
+            {
+                return false;
+            }
+            for (LinkedListElement i = start; i != null; previous = i, i = i.next)
+            {
+                if (i.key == elem)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
-
 
         /// <summary>
         /// Entfernt ein Element aus der unsortierten LinkedList.
@@ -52,17 +89,35 @@ namespace Praktikum.LinkedList
         /// <returns>True, wenn ein Element entfernt wurde. Sonst False.</returns>
         public virtual bool Delete(int elem)
         {
-            throw new NotImplementedException();
-        }
+            if (Search(elem))
+            {
+                if (start.key == elem)
+                {
+                    start = start.next;
+                }
+                else
+                {
+                    previous.next = previous.next.next;
+                    if (previous.next == null)
+                    {
+                        end = previous;
+                    }
+                }
+                return true;
+            }
+            return false;
 
+        }
 
         /// <summary>
         /// Gibt die Datenstruktur in der Konsole aus.
         /// </summary>
-        public void Print()
+        public virtual void Print()
         {
-            throw new NotImplementedException();
+            for (LinkedListElement elem = start; elem != null; elem = elem.next)
+            {
+                Console.WriteLine(elem);
+            }
         }
-
     }
 }

@@ -6,16 +6,17 @@ namespace Praktikum.LinkedList
 {
     class SetUnsortedLinkedList : LinkedListBase, ISetUnsorted
     {
-
         /// <summary>
-        /// Check, ob schon Element vorhanden ist, sonst wie LinkedListBase.Insert
+        /// Fügt am Ende der Liste ein Element ein
         /// </summary>
-        /// <param name="elem"></param>
-        /// <returns></returns>
-        public override bool Insert(int elem)
+        /// <param name="elem">Das einzufügende Element</param>
+        protected override void AddLast(int elem)
         {
-            throw new NotImplementedException();
+            if (Search(elem) == false)
+            {
+                end.next = new LinkedListElement(elem);
+                end = end.next;
+            }
         }
-
     }
 }
