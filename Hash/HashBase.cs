@@ -6,6 +6,7 @@ namespace Praktikum.Hash
 {
     abstract class HashBase : ISetSorted
     {
+        protected const int Length = 103;
 
         public abstract bool Insert(int elem);
 
@@ -14,9 +15,9 @@ namespace Praktikum.Hash
         public abstract bool Delete(int elem);
 
 
-        public void Print()
+        public abstract  void Print()
         {
-
+            
         }
     }
 }

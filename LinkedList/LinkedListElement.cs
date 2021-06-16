@@ -14,6 +14,18 @@ namespace Praktikum.LinkedList
 
         private int value;
 
+        internal int key;
+        internal LinkedListElement next;
+
+        public LinkedListElement(int key)
+        {
+            this.key = key;
+        }
+        public override string ToString()
+        {
+            return key.ToString();
+        }
+
         public LinkedListElement LeftElement
         {
             get { return left; }

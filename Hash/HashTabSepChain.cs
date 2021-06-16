@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Praktikum.LinkedList;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,39 +9,49 @@ namespace Praktikum.Hash
   {
     private const int Length = 103;
 
-    private readonly SetUnsortedLinkedList[] _tab = new SetUnsortedLinkedList[Length];
+        private readonly SetUnsortedLinkedList[] tab = new SetUnsortedLinkedList[Length];
 
-    public override bool Delete(int elem)
-    {
-      var index = delete % Length;
+        public override bool Delete(int elem)
+        {
+            int index = elem % Length;
 
-      return _tab[index] != null && _tab[index].Delete(delete);
-    }
+            return tab[index] != null ? tab[index].Delete(elem) : false;
+        }
 
-    public override bool Insert(int elem)
-    {
-      var index = insert % Length;
+        public override bool Insert(int elem)
+        {
+            int index = elem % Length;
 
-      _tab[index] ??= new SetUnsortedLinkedList();
+            if (tab[index] == null)
+                tab[index] = new SetUnsortedLinkedList();
 
-      return _tab[index].Insert(insert);
-    }
+            return tab[index].Insert(elem);
+        }
 
-    public override bool Search(int elem)
-    {
-      var index = elem % Length;
+        public override bool Search(int elem)
+        {
+            int index = elem % Length;
 
-      return _tab[index] != null && _tab[index].Search(search);
-    }
+            return tab[index]!=null ? tab[index].Search(elem) : false;
+        }
 
-    public override void Print()
-    {
-      foreach (var item in _tab)
-      {
-        if (item != null)
-          item.Print();
-      }
-      WriteLine();
+        public override void Print()
+        {
+            int count = 0;
+            foreach(SetUnsortedLinkedList item in tab)
+            {
+                Console.WriteLine($"---{count++}---");
+
+                if (item != null)
+                {
+                    item.Print();
+                } else
+                {
+                    Console.WriteLine("NULL");
+                }
+
+            }
+        }
     }
   }
 }
