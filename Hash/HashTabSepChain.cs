@@ -11,7 +11,7 @@ namespace Praktikum.Hash
 
         public override bool Delete(int elem)
         {
-            int index = elem % index;
+            int index = elem % Length;
 
             return tab[index] != null ? tab[index].Delete(elem) : false;
         }
@@ -35,11 +35,17 @@ namespace Praktikum.Hash
 
         public override void Print()
         {
+            int count = 0;
             foreach(SetUnsortedLinkedList item in tab)
             {
+                Console.WriteLine($"---{count++}---");
+
                 if (item != null)
                 {
                     item.Print();
+                } else
+                {
+                    Console.WriteLine("NULL");
                 }
 
             }
