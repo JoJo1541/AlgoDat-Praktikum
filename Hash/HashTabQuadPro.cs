@@ -20,5 +20,10 @@ namespace Praktikum.Hash
         {
             throw new NotImplementedException();
         }
+
+        public override void Print()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,9 +15,6 @@ namespace Praktikum.Hash
         public abstract bool Delete(int elem);
 
 
-        public abstract  void Print()
-        {
-            
-        }
+        public abstract void Print();
     }
 }
