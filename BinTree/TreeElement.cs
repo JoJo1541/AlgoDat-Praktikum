@@ -93,10 +93,18 @@ namespace Praktikum.BinTree
             set { this.rel = value; }
         }
 
-
+        
         public override string ToString()
         {
             return this.Value.ToString();
+        }
+
+        public AVLTree.Direction GetParentDirection()
+        {
+            if (Parent == null)
+                return AVLTree.Direction.None;
+
+            return Parent.ChildRight == this ? AVLTree.Direction.Right : AVLTree.Direction.Left;
         }
     }
 }
