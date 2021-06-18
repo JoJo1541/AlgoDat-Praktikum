@@ -12,6 +12,7 @@ namespace Praktikum.Array
         private static readonly int maxSize = 30;
         protected int[] data;
         protected int lastSearchResult;
+        protected int nextPos=0;
 
         /// <summary>
         /// Konstructor
@@ -29,7 +30,14 @@ namespace Praktikum.Array
         /// <returns>Gibt True zurück, wenn Einfügen erfolgreich. Sonst False</returns>
         public virtual bool Insert(int elem)
         {
-            throw new NotImplementedException();
+            if(nextPos < maxSize)
+            {
+                data[i] = elem;
+                nextPos++;
+                return true;
+            }
+
+            return false;
         }
 
 
@@ -41,7 +49,15 @@ namespace Praktikum.Array
         public virtual bool Search(int elem)
         {
             // Sequentielle Suche
-            throw new NotImplementedException();
+            for(int i = 0; i < maxSize; i++)
+            {
+                if(elem == data[i])
+                {
+                    lastSearchResult = i;
+                    return true;
+                }
+            }
+            return false;
         }
 
 
@@ -52,7 +68,13 @@ namespace Praktikum.Array
         /// <returns>True, wenn ein Element entfernt wurde. Sonst False.</returns>
         public virtual bool Delete(int elem)
         {
-            throw new NotImplementedException();
+            if (Search(elem))
+            {
+                data[lastSearchResult] = 0;
+                return true;
+            }
+
+            return false;
         }
     
 
@@ -61,7 +83,10 @@ namespace Praktikum.Array
         /// </summary>
         public void Print()
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < nextPos; i++)
+            {
+                Console.WriteLine($"{i}:\t{data[i]}");
+            }
         }
 
     }
