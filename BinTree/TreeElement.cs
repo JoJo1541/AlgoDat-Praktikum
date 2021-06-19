@@ -23,16 +23,9 @@ namespace Praktikum.BinTree
 
         ParentNodeRelation rel;
 
-        public TreeElement(TreeElement root, int value)
+        public TreeElement(int value)
         {
-            this.parent = root;
             this.value = value;
-
-            if (root == null)
-            {
-                this.ParentRelation = ParentNodeRelation.Root;
-            }
-
         }
 
         public TreeElement ChildLeft
@@ -96,7 +89,12 @@ namespace Praktikum.BinTree
 
         public override string ToString()
         {
-            return this.Value.ToString();
+            string result="";
+            if (ParentRelation == ParentNodeRelation.LeftChild)
+                result = "\\";
+            else if (ParentRelation == ParentNodeRelation.RightChild)
+                result = "/";
+            return result+this.Value.ToString();
         }
     }
 }
