@@ -191,14 +191,14 @@ namespace Praktikum.BinTree
                             
                             return;
                         }
-                        else
-                            element.BalanceFactor = subRoot.BalanceFactor = 0;
+
+                        element.BalanceFactor = subRoot.BalanceFactor = 0;
                     }
 
                     if (subRoot == RootElement)
                         return;
                     
-                    if (subRoot.Parent.ChildRight == element)
+                    if (subRoot.Parent.ChildRight == subRoot)
                         RemovedRight(subRoot.Parent as AVLElement);
                     else
                         RemovedLeft(subRoot.Parent as AVLElement);
@@ -248,14 +248,14 @@ namespace Praktikum.BinTree
 
                             return;
                         }
-                        else
-                            element.BalanceFactor = subRoot.BalanceFactor = 0;
+
+                        element.BalanceFactor = subRoot.BalanceFactor = 0;
                     }
 
                     if (subRoot == RootElement)
                         return;
                     
-                    if (subRoot.Parent.ChildRight == element)
+                    if (subRoot.Parent.ChildRight == subRoot)
                         RemovedRight(subRoot.Parent as AVLElement);
                     else
                         RemovedLeft(subRoot.Parent as AVLElement);
@@ -285,8 +285,5 @@ namespace Praktikum.BinTree
 
             subRoot.BalanceFactor = 0;
         }
-        
-
-
     }
 }
