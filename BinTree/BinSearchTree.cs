@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using static Praktikum.BinTree.TreeElement;
 
 namespace Praktikum.BinTree
@@ -11,51 +9,54 @@ namespace Praktikum.BinTree
     class BinSearchTree : ISetSorted
     {
         private TreeElement root;
-        protected TreeElement lastFoundElement;
+        protected TreeElement current;
 
         public TreeElement RootElement
         {
             get { return this.root; }
-            set { this.root = value; }
+            set
+            {
+                this.root = value;
+
+                if (this.root != null)
+                    this.root.Parent = null;
+            }
         }
 
         public virtual bool Delete(int elem)
         {
-            TreeElement toBeDeleted = TraverseAndFind(elem);
-            if (toBeDeleted == null)
-            {
+            if (!Search(elem))
                 return false;
+            
+            if (current.ChildLeft != null && current.ChildRight != null)
+            {
+                TreeElement symmetricPredecessor = current.ChildLeft;
+                
+                while (symmetricPredecessor.ChildRight != null)
+                {
+                    symmetricPredecessor = symmetricPredecessor.ChildRight;
+                }
+
+                current.Value = symmetricPredecessor.Value;
+                
+                current = symmetricPredecessor;
             }
 
-            if (toBeDeleted.ChildLeft != null && toBeDeleted.ChildRight != null)
+            if (current.ParentRelation == ParentNodeRelation.Root)
             {
-                TreeElement a = toBeDeleted.ChildLeft;
-                while (a.ChildRight != null)
-                {
-                    a = a.ChildRight;
-                }
-                toBeDeleted = a;
-            }
-
-            if (toBeDeleted.ParentRelation == ParentNodeRelation.Root)
-            {
-                root = root.ChildLeft ?? root.ChildRight;
-
-                if (root != null)
-                {
-                    root.Parent = null;
-                }
+                RootElement = RootElement.ChildLeft ?? RootElement.ChildRight;
             }
             else
             {
-                TreeElement parent = toBeDeleted.Parent;
-                if (toBeDeleted.ParentRelation == ParentNodeRelation.LeftChild)
+                TreeElement parent = current.Parent;
+                
+                if (current.ParentRelation == ParentNodeRelation.LeftChild)
                 {
-                    parent.ChildLeft = toBeDeleted.ChildLeft ?? toBeDeleted.ChildRight;
+                    parent.ChildLeft = current.ChildLeft ?? current.ChildRight;
                 }
                 else
                 {
-                    parent.ChildRight = toBeDeleted.ChildLeft ?? toBeDeleted.ChildRight;
+                    parent.ChildRight = current.ChildLeft ?? current.ChildRight;
                 }
             }
             return true;
@@ -69,20 +70,19 @@ namespace Praktikum.BinTree
                 return false;
             }
 
-
-            if (lastFoundElement == null)
+            TreeElement add = new TreeElement(elem);
+            
+            if (RootElement == null)
             {
-                this.root = new TreeElement(null, elem);
-                return true;
+                this.RootElement = add;
             }
-
-            if (elem < lastFoundElement.Value)
+            else if (elem < current.Value)
             {
-                lastFoundElement.ChildLeft = new TreeElement(lastFoundElement, elem);
+                current.ChildLeft = add;
             }
             else
             {
-                lastFoundElement.ChildRight = new TreeElement(lastFoundElement, elem);
+                current.ChildRight = add;
             }
 
             return true;
@@ -97,7 +97,25 @@ namespace Praktikum.BinTree
 
         public bool Search(int elem)
         {
-            return TraverseAndFind(elem) != null;
+            if (RootElement == null)
+                return false;
+
+            current = RootElement;
+
+            while (current.Value != elem)
+            {
+                if (elem < current.Value)
+                    if (current.ChildLeft != null)
+                        current = current.ChildLeft;
+                    else
+                        return false;
+                else if (current.ChildRight != null)
+                    current = current.ChildRight;
+                else
+                    return false;
+            }
+
+            return true;
         }
 
 
@@ -144,19 +162,19 @@ namespace Praktikum.BinTree
                 Console.Write("    ");
             }
 
-            if (node.ParentRelation == TreeElement.ParentNodeRelation.RightChild)
-            {
-                Console.WriteLine("/" + node.ToString());
-            }
-            else
-            if (node.ParentRelation == TreeElement.ParentNodeRelation.LeftChild)
-            {
-                Console.WriteLine("\\" + node.ToString());
-            }
-            else
-            {
+            // if (node.ParentRelation == TreeElement.ParentNodeRelation.RightChild)
+            // {
+            //     Console.WriteLine("/" + node.ToString());
+            // }
+            // else
+            // if (node.ParentRelation == TreeElement.ParentNodeRelation.LeftChild)
+            // {
+            //     Console.WriteLine("\\" + node.ToString());
+            // }
+            // else
+            // {
                 Console.WriteLine(node.ToString());
-            }
+            //}
 
             TraverseAndPrintInReverse(node.ChildLeft, lvl + 1);
         }
@@ -173,7 +191,7 @@ namespace Praktikum.BinTree
 
             while (e != null && e.Value != targetValue)
             {
-                this.lastFoundElement = e;
+                this.current = e;
                 if (e.Value < targetValue)
                 {
                     e = e.ChildRight;
@@ -188,64 +206,76 @@ namespace Praktikum.BinTree
         }
 
 
-        protected void RotateLeft(TreeElement elem)
+        protected void RotateLeft(TreeElement rotateUp)
         {
-            // Linken Teilbaum an Parent hängen
-            elem.Parent.ChildRight = elem.ChildLeft;
+            /*  grandParent              grandParent
+             *      /|\                     /|\
+             *   rotateDown     -->       rotateUp
+             *           \                /
+             *        rotateUp       rotateDown
+             *        /                       \
+             *       a                         a
+             */
+            
+            TreeElement rotateDown = rotateUp.Parent;
+            
+            TreeElement grandParent = rotateDown.Parent;
+            
+            ParentNodeRelation parentRelation = rotateDown.ParentRelation;
+            
+            //Die eigentliche Rotation. Nur diese zwei Zeilen sind verschieden zur anderen Rotationsrichtung
+            rotateDown.ChildRight = rotateUp.ChildLeft;
 
+            rotateUp.ChildLeft = rotateDown;
 
-            // Parent zum neuen linken Teilbaum machen und parent für elem setzen
-            TreeElement e = elem.Parent.Parent;
-            ParentNodeRelation pr = elem.Parent.ParentRelation;
-
-            elem.ChildLeft = elem.Parent;
-
-            if (pr == ParentNodeRelation.LeftChild)
+            //Neue Wurzel des Teilbaumes wieder passend an den Elternknoten hängen bzw. als RootElement setzen
+            if (parentRelation == ParentNodeRelation.LeftChild)
             {
-                e.ChildLeft = elem;
+                grandParent.ChildLeft = rotateUp;
             }
-            else if (pr == ParentNodeRelation.RightChild)
+            else if (parentRelation == ParentNodeRelation.RightChild)
             {
-                e.ChildRight = elem;
+                grandParent.ChildRight = rotateUp;
             }
-            else if (pr == ParentNodeRelation.Root)
+            else if (parentRelation == ParentNodeRelation.Root)
             {
-                elem.Parent = null;
-                this.root = elem;
+                this.RootElement = rotateUp;
             }
         }
 
-        protected void RotateRight(TreeElement elem)
+        protected void RotateRight(TreeElement rotateUp)
         {
-            /*      b           a = elem;
-             *    /   \
-             *   a     C
-             *  / \
-             * A   B
+            /*      grandParent            grandParent
+             *         /|\                    /|\
+             *     rotateDown     -->       rotateUp
+             *     /                              \
+             * rotateUp                       rotateDown
+             *       \                        /
+             *        a                      a
              */
+            TreeElement rotateDown = rotateUp.Parent;
+            
+            TreeElement grandParent = rotateDown.Parent;
+            
+            ParentNodeRelation pr = rotateUp.Parent.ParentRelation;
+            
+            //Die eigentliche Rotation. Nur diese zwei Zeilen sind verschieden zur anderen Rotationsrichtung
+            rotateDown.ChildLeft = rotateUp.ChildRight;
 
-            // Rechten Teilbaum an Parent hängen
-            elem.Parent.ChildLeft = elem.ChildRight;
+            rotateUp.ChildRight = rotateDown;
 
-
-            // Parent zum neuen rechten Teilbaum machen und parent für elem setzen
-            TreeElement e = elem.Parent.Parent;
-            ParentNodeRelation pr = elem.Parent.ParentRelation;
-
-            elem.ChildRight = elem.Parent;
-
+            //Neue Wurzel des Teilbaumes wieder passend an den Elternknoten hängen bzw. als RootElement setzen
             if (pr == ParentNodeRelation.LeftChild)
             {
-                e.ChildLeft = elem;
+                grandParent.ChildLeft = rotateUp;
             }
             else if (pr == ParentNodeRelation.RightChild)
             {
-                e.ChildRight = elem;
+                grandParent.ChildRight = rotateUp;
             }
             else if (pr == ParentNodeRelation.Root)
             {
-                elem.Parent = null;
-                this.root = elem;
+                this.RootElement = rotateUp;
             }
 
         }

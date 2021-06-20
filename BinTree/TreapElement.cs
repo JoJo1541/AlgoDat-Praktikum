@@ -9,7 +9,7 @@ namespace Praktikum.BinTree
         int prio;
         
         
-        public TreapElement(TreeElement root, int value, int prio) : base(root, value)
+        public TreapElement(int value, int prio) : base(value)
         {
             this.prio = prio;
         }
@@ -22,7 +22,7 @@ namespace Praktikum.BinTree
 
         public override string ToString()
         {
-            return this.Value.ToString() + "(" + this.Priority + ")";
+            return base.ToString() + "(" + this.Priority + ")";
         }
 
     }

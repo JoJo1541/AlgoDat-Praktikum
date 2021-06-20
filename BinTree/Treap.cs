@@ -16,7 +16,7 @@ namespace Praktikum.BinTree
                 return false;
             }
 
-            this.RotateElemetToLeaf(e);
+            this.RotateElementToLeaf(e);
 
             if (e.ParentRelation == TreeElement.ParentNodeRelation.Root)
             {
@@ -39,7 +39,7 @@ namespace Praktikum.BinTree
         {
             int r;
             TreapElement e;
-
+            
             if (this.Search(elem))
             {
                 return false;
@@ -47,21 +47,22 @@ namespace Praktikum.BinTree
 
             r = new Random().Next(1, 1000);
 
-            if (lastFoundElement == null)
+            e = new TreapElement(elem, r);
+            
+            if (current == null)
             {
-                e = new TreapElement(null, elem, r);
                 this.RootElement = e;
+
+                return true;
+            }
+            
+            if (elem < current.Value)
+            {
+                current.ChildLeft = e;
             }
             else
-            if (elem < lastFoundElement.Value)
             {
-                e = new TreapElement(lastFoundElement, elem, r); ;
-                lastFoundElement.ChildLeft = e;
-            }
-            else
-            {
-                e = new TreapElement(lastFoundElement, elem, r);
-                lastFoundElement.ChildRight = e;
+                current.ChildRight = e;
             }
 
             EnsureUpwardsHeapCondition(e);
@@ -83,15 +84,10 @@ namespace Praktikum.BinTree
                     this.RotateLeft(elem);
                 }
             }
-
-            if (elem.Parent == null)
-            {
-                this.RootElement = elem;
-            }
         }
 
 
-        private void RotateElemetToLeaf(TreapElement elem)
+        private void RotateElementToLeaf(TreapElement elem)
         {
             if (elem.ChildLeft == null && elem.ChildRight == null)
             {
@@ -122,9 +118,8 @@ namespace Praktikum.BinTree
                     this.RotateLeft(elem.ChildRight);
                 }
             }
-
-
-            RotateElemetToLeaf(elem);
+            
+            RotateElementToLeaf(elem);
         }
 
     }
