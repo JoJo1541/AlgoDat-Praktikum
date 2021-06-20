@@ -224,6 +224,7 @@ namespace Praktikum.BinTree
                     break;
                 case -2:
                     AVLElement subRoot;
+                    
                     if ((element.ChildLeft as AVLElement).BalanceFactor==1)
                     {
                         RotateLeft(element.ChildLeft.ChildRight);
