@@ -101,5 +101,10 @@ namespace Praktikum.Hash
 
           WriteLine();
         }
+
+        public override void Print()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

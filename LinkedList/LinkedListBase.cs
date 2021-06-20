@@ -18,8 +18,8 @@ namespace Praktikum.LinkedList
         /// </summary>
         public LinkedListBase()
         {
-            first = null;
-            last = null;
+            start = null;
+            end = null;
         }
 
         /// <summary>
