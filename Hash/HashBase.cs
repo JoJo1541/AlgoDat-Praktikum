@@ -16,7 +16,7 @@ namespace Praktikum.Hash
 
         public abstract void Print();
 
-        public virtual int HashFunc(int elem)
+        protected int HashFunc(int elem)
         {
             return elem % Length;
         }

@@ -1,110 +1,104 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using static System.Console;
 
 namespace Praktikum.Hash
 {
     class HashTabQuadPro : HashBase, ISetUnsorted
     {
-      private const int MaxProbingDistance = (Length - 1) / 2;
+        private const int MaxProbingDistance = (Length - 1) / 2;
 
-      private readonly int?[] _tab = new int?[Length];
+        private readonly int?[] _tab = new int?[Length];
 
-      private int _current, _next;
+        private int _current, _next;
 
         public override bool Delete(int elem)
         {
-          if (!Search(delete))
-            return false;
+            if (!Search(elem))
+                return false;
 
-          if (_tab[_next] == null)
-            _tab[_current] = null; //bedeutet freigegeben
-          else
-            _tab[_current] = -1; //bedeutet gelöscht
+            if (_tab[_next] == null)
+                _tab[_current] = null; //bedeutet freigegeben
+            else
+                _tab[_current] = -1; //bedeutet gelöscht
 
-          return true;
+            return true;
         }
 
         public override bool Insert(int elem)
         {
-          if (Search(elem))
-            return false;
+            if (Search(elem))
+                return false;
 
-          if (_tab[_current] != null && _tab[_current] != -1)
-            return false;
+            if (_tab[_current] != null && _tab[_current] != -1)
+                return false;
 
-          _tab[_current] = elem;
+            _tab[_current] = elem;
 
-          return true;
+            return true;
         }
 
         public override bool Search(int elem)
         {
-          var index = HashFunc(elem);
+            var index = HashFunc(elem);
 
-          _current = index;
+            _current = index;
 
-          if (_tab[_current] == null)
-            return false;
+            if (_tab[_current] == null)
+                return false;
 
-          if (_tab[_current] == elem)
-          {
-            _next = (_current + 1) % Length;
+            if (_tab[_current] == elem)
+            {
+                _next = (_current + 1) % Length;
 
-            return true;
-          }
+                return true;
+            }
 
-          int probingDistance = 1, probingDirection = 1, tmp;
+            int probingDistance = 1, probingDirection = 1, tmp;
 
-          do
-          {
-            var rawIndex = index + probingDistance * probingDistance * probingDirection;
+            do
+            {
+                var rawIndex = index + probingDistance * probingDistance * probingDirection;
 
-            while (rawIndex < 0)
-              rawIndex += Length;
+                while (rawIndex < 0)
+                    rawIndex += Length;
 
-            tmp = rawIndex % Length;
+                tmp = rawIndex % Length;
 
-            if (_tab[tmp] == search || (_tab[_current] != -1 && (_tab[tmp] == -1 || _tab[tmp] == null)))
-              _current = tmp;
+                if (_tab[tmp] == elem || (_tab[_current] != -1 && (_tab[tmp] == -1 || _tab[tmp] == null)))
+                    _current = tmp;
 
-            probingDirection *= -1;
+                probingDirection *= -1;
 
-            if (probingDirection == 1)
-              probingDistance++;
-          }
-          while (_tab[tmp] != null && _tab[tmp] != search && probingDistance <= MaxProbingDistance);
+                if (probingDirection == 1)
+                    probingDistance++;
+            }
+            while (_tab[tmp] != null && _tab[tmp] != elem && probingDistance <= MaxProbingDistance);
 
-          _next = ((index + probingDistance * probingDistance * probingDirection) + Length) % Length;
+            _next = ((index + probingDistance * probingDistance * probingDirection) + Length) % Length;
 
-          return _tab[_current] == search;
+            return _tab[_current] == elem;
         }
 
         public override void Print()
         {
-          var counter = 0;
+            var counter = 0;
 
-          for (var i = 0; i < Length; i++)
-          {
-            var def = ForegroundColor;
+            for (var i = 0; i < Length; i++)
+            {
+                var def = ForegroundColor;
 
-            if (_tab[i] != null && _tab[i] % Length != i)
-              ForegroundColor = ConsoleColor.DarkGreen;
+                if (_tab[i] != null && _tab[i] % Length != i)
+                    ForegroundColor = ConsoleColor.DarkGreen;
 
-            Write(_tab[i] != null ? $"{_tab[i],3} " : " X  ");
+                Write(_tab[i] != null ? $"{_tab[i],3} " : " X  ");
 
-            ForegroundColor = def;
+                ForegroundColor = def;
 
-            if (++counter % 10 == 0)
-              WriteLine();
-          }
+                if (++counter % 10 == 0)
+                    WriteLine();
+            }
 
-          WriteLine();
-        }
-
-        public override void Print()
-        {
-            throw new NotImplementedException();
+            WriteLine();
         }
     }
 }
