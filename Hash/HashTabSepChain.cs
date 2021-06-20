@@ -5,20 +5,20 @@ using System.Text;
 
 namespace Praktikum.Hash
 {
-    class HashTabSepChain : HashBase
-    {
-        private SetUnsortedLinkedList[] tab = new SetUnsortedLinkedList[Length];
+  class HashTabSepChain : HashBase, ISetUnsorted
+  {
+        private readonly SetUnsortedLinkedList[] tab = new SetUnsortedLinkedList[Length];
 
         public override bool Delete(int elem)
         {
-            int index = elem % Length;
+            int index = HashFunc(elem);
 
             return tab[index] != null ? tab[index].Delete(elem) : false;
         }
 
         public override bool Insert(int elem)
         {
-            int index = elem % Length;
+            int index = HashFunc(elem);
 
             if (tab[index] == null)
                 tab[index] = new SetUnsortedLinkedList();
@@ -28,7 +28,7 @@ namespace Praktikum.Hash
 
         public override bool Search(int elem)
         {
-            int index = elem % Length;
+            int index = HashFunc(elem);
 
             return tab[index]!=null ? tab[index].Search(elem) : false;
         }
@@ -38,17 +38,15 @@ namespace Praktikum.Hash
             int count = 0;
             foreach(SetUnsortedLinkedList item in tab)
             {
-                Console.WriteLine($"---{count++}---");
-
                 if (item != null)
                 {
-                    item.Print();
-                } else
-                {
-                    Console.WriteLine("NULL");
+                    Console.WriteLine($"---{count}---");
+                    tab[count].Print();
                 }
 
+                count++;                
             }
         }
     }
+  }
 }

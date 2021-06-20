@@ -14,7 +14,11 @@ namespace Praktikum.Hash
 
         public abstract bool Delete(int elem);
 
-
         public abstract void Print();
+
+        public virtual int HashFunc(int elem)
+        {
+            return elem % Length;
+        }
     }
 }
