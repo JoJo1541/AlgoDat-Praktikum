@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Praktikum.Hash
 {
-    class HashTabQuadPro : ISetUnsorted
+    class HashTabQuadPro : HashBase, ISetUnsorted
     {
-      private const int Length = 103, MaxProbingDistance = (Length - 1) / 2;
+      private const int MaxProbingDistance = (Length - 1) / 2;
 
       private readonly int?[] _tab = new int?[Length];
 
@@ -40,7 +40,7 @@ namespace Praktikum.Hash
 
         public override bool Search(int elem)
         {
-          var index = elem % Length;
+          var index = HashFunc(elem);
 
           _current = index;
 
