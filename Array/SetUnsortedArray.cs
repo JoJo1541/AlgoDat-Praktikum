@@ -17,8 +17,16 @@ namespace Praktikum.Array
         /// <returns>True, wenn ein Element eingefügt wurde. Sonst False.</returns>
         public override bool Insert(int elem)
         {
-            throw new NotImplementedException();
-        }
-
+            if(!Search(elem))
+            {
+                if (nextFreeSpot != maxSize)
+                {
+                    data[nextFreeSpot] = elem;
+                    nextFreeSpot++;
+                    return true;
+                }
+            }
+            return false;
+        }    
     }
 }
