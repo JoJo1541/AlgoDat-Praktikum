@@ -9,10 +9,10 @@ namespace Praktikum.Array
     /// </summary>
     abstract class ArrayBase : IDictionary
     {
-        private static readonly int maxSize = 30;
+        protected static readonly int maxSize = 30;
         protected int[] data;
         protected int lastSearchResult;
-        protected int nextPos=0;
+        protected int nextFreeSpot = 0;
 
         /// <summary>
         /// Konstructor
@@ -30,13 +30,12 @@ namespace Praktikum.Array
         /// <returns>Gibt True zurück, wenn Einfügen erfolgreich. Sonst False</returns>
         public virtual bool Insert(int elem)
         {
-            if(nextPos < maxSize)
+            if(nextFreeSpot != maxSize)
             {
-                data[i] = elem;
-                nextPos++;
+                data[nextFreeSpot] = elem;
+                nextFreeSpot++;
                 return true;
             }
-
             return false;
         }
 
@@ -49,11 +48,11 @@ namespace Praktikum.Array
         public virtual bool Search(int elem)
         {
             // Sequentielle Suche
-            for(int i = 0; i < maxSize; i++)
+            for (int i = 0; i < data.Length-1; i++)
             {
-                if(elem == data[i])
+                if (data[i] == elem)
                 {
-                    lastSearchResult = i;
+                    lastSearchResult = elem;
                     return true;
                 }
             }
@@ -70,10 +69,16 @@ namespace Praktikum.Array
         {
             if (Search(elem))
             {
-                data[lastSearchResult] = 0;
-                return true;
+                for (int i = 0; i < data.Length-1; i++)
+                {
+                    if(data[i] == elem)
+                    {
+                        data[i] = data[nextFreeSpot - 1];
+                        nextFreeSpot--;
+                        return true;
+                    }
+                }
             }
-
             return false;
         }
     
@@ -83,9 +88,10 @@ namespace Praktikum.Array
         /// </summary>
         public void Print()
         {
-            for(int i = 0; i < nextPos; i++)
+            for (int i = 0; i < nextFreeSpot; i++)
             {
-                Console.WriteLine($"{i}:\t{data[i]}");
+                Console.Write($"{data[i]} ");
+
             }
         }
 

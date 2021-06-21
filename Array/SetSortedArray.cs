@@ -17,8 +17,15 @@ namespace Praktikum.Array
         /// <returns>True, wenn ein Element eingefügt wurde. Sonst False.</returns>
         public override bool Insert(int elem)
         {
-            throw new NotImplementedException();
+            if (Search(elem))
+            {
+                return false;
+            }
+            else
+            {
+                return InsertItem(elem);
+            }
+            
         }
-
     }
 }

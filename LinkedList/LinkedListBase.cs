@@ -116,7 +116,7 @@ namespace Praktikum.LinkedList
         {
             for (LinkedListElement elem = start; elem != null; elem = elem.next)
             {
-                Console.WriteLine(elem);
+                Console.Write($"{elem} ");
             }
         }
     }
