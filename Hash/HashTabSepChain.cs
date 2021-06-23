@@ -42,6 +42,7 @@ namespace Praktikum.Hash
                 {
                     Console.WriteLine($"---{count}---");
                     tab[count].Print();
+                    Console.WriteLine();
                 }
 
                 count++;
