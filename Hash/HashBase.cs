@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Praktikum.Hash
 {
-    abstract class HashBase : ISetSorted
+    abstract class HashBase : ISetUnsorted
     {
         protected const int Length = 103;
 

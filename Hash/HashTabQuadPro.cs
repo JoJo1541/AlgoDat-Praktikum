@@ -3,7 +3,7 @@ using static System.Console;
 
 namespace Praktikum.Hash
 {
-    class HashTabQuadPro : HashBase, ISetUnsorted
+    class HashTabQuadPro : HashBase
     {
         private const int MaxProbingDistance = (Length - 1) / 2;
 

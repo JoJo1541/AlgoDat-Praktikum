@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Praktikum.Hash
 {
-    class HashTabSepChain : HashBase, ISetUnsorted
+    class HashTabSepChain : HashBase
     {
         private readonly SetUnsortedLinkedList[] tab = new SetUnsortedLinkedList[Length];
 

@@ -158,7 +158,6 @@
       <HashCode>AAAAEEAACAAAAAAAAAAAAAAAAAEAAAAgAAAABAAkAAA=</HashCode>
       <FileName>Hash\HashTabQuadPro.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.Hash.HashTabSepChain" Collapsed="true">
     <Position X="15.25" Y="3.5" Width="1.5" />
@@ -166,7 +165,6 @@
       <HashCode>AAAAAGAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAkAAA=</HashCode>
       <FileName>Hash\HashTabSepChain.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.Program" Collapsed="true">
     <Position X="19.5" Y="2.25" Width="1.5" />
