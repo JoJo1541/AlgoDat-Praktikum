@@ -7,7 +7,7 @@ namespace Praktikum.LinkedList
     /// <summary>
     /// Implementierung von MultiSetSortedLinkedList
     /// </summary>
-    class MultiSetSortedLinkedList : LinkedListBaseSorted, ISetSorted
+    class MultiSetSortedLinkedList : LinkedListBaseSorted, IMultiSetSorted
     {
         /// <summary>
         /// Insert Methode für die sortierte MultiSetLinkedList
