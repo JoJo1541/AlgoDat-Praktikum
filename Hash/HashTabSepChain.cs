@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Praktikum.Hash
 {
-  class HashTabSepChain : HashBase, ISetUnsorted
-  {
+    class HashTabSepChain : HashBase, ISetUnsorted
+    {
         private readonly SetUnsortedLinkedList[] tab = new SetUnsortedLinkedList[Length];
 
         public override bool Delete(int elem)
@@ -30,13 +30,13 @@ namespace Praktikum.Hash
         {
             int index = HashFunc(elem);
 
-            return tab[index]!=null ? tab[index].Search(elem) : false;
+            return tab[index] != null ? tab[index].Search(elem) : false;
         }
 
         public override void Print()
         {
             int count = 0;
-            foreach(SetUnsortedLinkedList item in tab)
+            foreach (SetUnsortedLinkedList item in tab)
             {
                 if (item != null)
                 {
@@ -44,9 +44,8 @@ namespace Praktikum.Hash
                     tab[count].Print();
                 }
 
-                count++;                
+                count++;
             }
         }
     }
-  }
 }

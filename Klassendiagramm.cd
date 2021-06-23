@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Praktikum.Array.ArrayBase" Collapsed="true">
-    <Position X="10.75" Y="8.5" Width="1.5" />
+    <Position X="6.5" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAIAAAAAAAAAAAAAAECAAAAAAAQAAAkAAA=</HashCode>
+      <HashCode>QAAAAEAAAAAIAAAAAAAAAAAAAAECAAAAAAAQAAAkAAA=</HashCode>
       <FileName>Array\ArrayBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.Array.ArrayBaseSorted" Collapsed="true">
-    <Position X="8.5" Y="9.75" Width="1.5" />
+    <Position X="4.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <HashCode>AAAAAEBAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAgA=</HashCode>
       <FileName>Array\ArrayBaseSorted.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Praktikum.Array.MultiSetSortedArray" Collapsed="true">
-    <Position X="7.5" Y="11.25" Width="1.5" />
+    <Position X="3.25" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Array\MultiSetSortedArray.cs</FileName>
@@ -24,7 +24,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.Array.MultiSetUnsortedArray" Collapsed="true">
-    <Position X="12" Y="9.75" Width="1.5" />
+    <Position X="7.75" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Array\MultiSetUnsortedArray.cs</FileName>
@@ -32,7 +32,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.Array.SetSortedArray" Collapsed="true">
-    <Position X="9.75" Y="11.25" Width="1.5" />
+    <Position X="5.5" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Array\SetSortedArray.cs</FileName>
@@ -40,7 +40,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.Array.SetUnsortedArray" Collapsed="true">
-    <Position X="14.25" Y="9.75" Width="1.5" />
+    <Position X="10" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Array\SetUnsortedArray.cs</FileName>
@@ -48,102 +48,80 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.BinTree.AVLTree" Collapsed="true">
-    <Position X="12.25" Y="12.75" Width="1.5" />
+    <Position X="8" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIAAAEAAAAABIAAAAAAAAAAAAAEAAIAEAAAAAAAAAAA=</HashCode>
       <FileName>BinTree\AVLTree.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Praktikum.BinTree.AVLTreeElement" Collapsed="true">
-    <Position X="17.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>BinTree\AVLTreeElement.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Praktikum.BinTree.BinSearchTree" Collapsed="true">
-    <Position X="13.5" Y="11.5" Width="1.5" />
+    <Position X="9.25" Y="12.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAEgAAAAAAAAgAAAAAAEABAAQACAAAAAkIAA=</HashCode>
+      <HashCode>AAAAAEAAAEgAAAAAAAAgAAAAgAEABAAQAAAAAAAkIAA=</HashCode>
       <FileName>BinTree\BinSearchTree.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.BinTree.Treap" Collapsed="true">
-    <Position X="14.5" Y="12.75" Width="1.5" />
+    <Position X="10.25" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAQCAA=</HashCode>
+      <HashCode>AAAAAEAAAEAAAAAAAAAAAAAAAAEAAAAAAAAAAAAACAA=</HashCode>
       <FileName>BinTree\Treap.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Praktikum.BinTree.TreapElement" Collapsed="true">
-    <Position X="19.5" Y="5.75" Width="1.5" />
+    <Position X="13" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>BinTree\TreapElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Praktikum.BinTree.TreeElement" Collapsed="true">
-    <Position X="18.5" Y="4.5" Width="1.5" />
+    <Position X="14.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACBEAAIAZAAAACQAACAAAAAgAAAAAAA=</HashCode>
       <FileName>BinTree\TreeElement.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Praktikum.Hash.HashBase" Collapsed="true">
-    <Position X="18.5" Y="1.5" Width="1.5" />
+  <Class Name="Praktikum.BinTree.AVLElement" Collapsed="true">
+    <Position X="15.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAkAAA=</HashCode>
-      <FileName>Hash\HashBase.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Praktikum.Hash.HashTabQuadPro" Collapsed="true">
-    <Position X="17.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>Hash\HashTabQuadPro.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Praktikum.Hash.HashTabSepChain" Collapsed="true">
-    <Position X="19.5" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>Hash\HashTabSepChain.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BinTree\AVLElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Praktikum.LinkedList.LinkedListBase" Collapsed="true">
-    <Position X="10.75" Y="4.5" Width="1.5" />
+    <Position X="6.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAIAAAAAAEAAAAAAAEAAAAAAAAAAAAkAgA=</HashCode>
+      <HashCode>AAAAAFACAAAAAAAgAAIAIAAAAAEAAAAAAAAAAAAkAAA=</HashCode>
       <FileName>LinkedList\LinkedListBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.LinkedList.LinkedListBaseSorted" Collapsed="true">
-    <Position X="13" Y="5.75" Width="1.5" />
+    <Position X="6.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>LinkedList\LinkedListBaseSorted.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Praktikum.LinkedList.LinkedListElement" Collapsed="true">
-    <Position X="22" Y="1.5" Width="1.5" />
+    <Position X="17.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIEAAAAAAAAAAAAAAAAAIACAAAAAgAAAAgAA=</HashCode>
+      <HashCode>AAAAAAAAIEAAAAAEAAAEAAAAAAAIACAAAAAgAAIAgAA=</HashCode>
       <FileName>LinkedList\LinkedListElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Praktikum.LinkedList.MultiSetSortedLinkedList" Collapsed="true">
-    <Position X="12" Y="7.25" Width="1.5" />
+    <Position X="5.5" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LinkedList\MultiSetSortedLinkedList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.LinkedList.MultiSetUnsortedLinkedList" Collapsed="true">
-    <Position X="7.5" Y="5.75" Width="1.5" />
+    <Position X="10" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LinkedList\MultiSetUnsortedLinkedList.cs</FileName>
@@ -151,7 +129,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.LinkedList.SetSortedLinkedList" Collapsed="true">
-    <Position X="14.25" Y="7.25" Width="1.5" />
+    <Position X="7.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LinkedList\SetSortedLinkedList.cs</FileName>
@@ -159,50 +137,74 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Praktikum.LinkedList.SetUnsortedLinkedList" Collapsed="true">
-    <Position X="9.75" Y="5.75" Width="1.5" />
+    <Position X="3.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LinkedList\SetUnsortedLinkedList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="Praktikum.Hash.HashBase" Collapsed="true">
+    <Position X="14.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAEAAAAAAAAAAAAAAAABAAAEAAAAAAAAAAAAkAAA=</HashCode>
+      <FileName>Hash\HashBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Praktikum.Hash.HashTabQuadPro" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEEAACAAAAAAAAAAAAAAAAAEAAAAgAAAABAAkAAA=</HashCode>
+      <FileName>Hash\HashTabQuadPro.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Praktikum.Hash.HashTabSepChain" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAkAAA=</HashCode>
+      <FileName>Hash\HashTabSepChain.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="Praktikum.Program" Collapsed="true">
-    <Position X="23.75" Y="1.5" Width="1.5" />
+    <Position X="19.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAQCBAAAgAAAAgAAAEAAAgBAAAAAAEBIAAAAE=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Praktikum.IDictionary" Collapsed="true">
-    <Position X="10.75" Y="1.5" Width="1.5" />
+    <Position X="6.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAkAAA=</HashCode>
       <FileName>IDictionary.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Praktikum.IMultiSetSorted" Collapsed="true">
-    <Position X="14.25" Y="2.75" Width="1.5" />
+    <Position X="10" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IMultiSetSorted.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Praktikum.IMultiSetUnsorted" Collapsed="true">
-    <Position X="7.5" Y="2.75" Width="1.5" />
+    <Position X="3.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IMultiSetUnsorted.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Praktikum.ISetSorted" Collapsed="true">
-    <Position X="9.75" Y="2.75" Width="1.5" />
+    <Position X="5.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ISetSorted.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Praktikum.ISetUnsorted" Collapsed="true">
-    <Position X="12" Y="2.75" Width="1.5" />
+    <Position X="7.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ISetUnsorted.cs</FileName>
